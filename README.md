@@ -1,11 +1,11 @@
-# Project Name: [Cinema](https://cinema-blush.vercel.app/)
+# Project Name: [React Therapy]()
 
 - ## Instruction for Clone and start porject on your local matchine.
 
 ### step-1
 
 ```
-git clone https://github.com/Omarfaruk05/Cinema.git
+git clone https://github.com/Omarfaruk05/React-therapy
 ```
 
 ### step-2
@@ -31,4 +31,3 @@ or
 ```
 npm dev
 ```
-# React-therapy
