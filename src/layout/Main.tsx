@@ -8,12 +8,12 @@ const Main = () => {
   return (
     <div>
       <div className="flex">
-        <aside className="hidden md:block">
+        <aside className="hidden lg:block">
           <SidebarComponent />
         </aside>
         <div className="w-full">
           <Nav />
-          <main className="bg-[#D4E9FF]/30 h-full w-full p-8">
+          <main className="bg-[#D4E9FF]/30 h-full w-full py-4 md:p-8">
             {" "}
             <Outlet />
           </main>
