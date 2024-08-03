@@ -14,13 +14,15 @@ const FeaturedTestimonial = () => {
             <div className="space-y-2">
               <div className="flex items-center gap-1">
                 <MapPin className="text-gray-500" size={12} weight="fill" />
-                <p className="text-sm md:text-lg">123 Elm Street, New York</p>
+                <p className="text-xs md:text-md 2xl:text-lg">
+                  123 Elm Street, New York
+                </p>
               </div>
-              <h3 className="text-md md:text-xl font-semibold">
+              <h3 className="text-md md:text-lg 2xl:texxt-xl font-semibold">
                 <span>Healing Bodywork</span>{" "}
                 <span className="text-blue-500 italic">by Cort</span>
               </h3>
-              <p className="text-sm md:text-lg">
+              <p className="text-sm md:text-md 2xl:text-lg">
                 <span>
                   Cort’s healing bodywork massage was absolutely transformative.
                   Their intuitive touch and deep understanding of...
@@ -36,13 +38,15 @@ const FeaturedTestimonial = () => {
             <div className="space-y-2">
               <div className="flex items-center gap-1">
                 <MapPin className="text-gray-500" size={12} weight="fill" />
-                <p className="text-sm md:text-lg">123 Elm Street, New York</p>
+                <p className="text-xs md:text-md 2xl:text-lg">
+                  123 Elm Street, New York
+                </p>
               </div>
-              <h3 className="text-md md:text-xl font-semibold">
+              <h3 className="text-md md:text-lg 2xl:text-xl font-semibold">
                 <span>Healing Bodywork</span>{" "}
                 <span className="text-blue-500 italic">by Cort</span>
               </h3>
-              <p className="text-sm md:text-lg">
+              <p className="text-sm md:text-md 2xl:text-lg">
                 <span>
                   Cort’s healing bodywork massage was absolutely transformative.
                   Their intuitive touch and deep understanding of...
