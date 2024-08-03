@@ -1,4 +1,5 @@
 import {
+  Button,
   Navbar,
   NavbarBrand,
   NavbarCollapse,
@@ -8,9 +9,21 @@ import {
   NavbarList,
 } from "keep-react";
 import profile from "../assets/image 116.png";
-import { CaretDown } from "phosphor-react";
+import { Bell, CaretDown, SignOut } from "phosphor-react";
+import { signOut } from "firebase/auth";
+import { auth } from "../lib/firebase.init";
+import { useNavigate } from "react-router-dom";
 
 const Nav = () => {
+  const navigate = useNavigate();
+  const handleLogOut = async () => {
+    await signOut(auth);
+
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("email");
+
+    navigate("/login");
+  };
   return (
     <div className="">
       <Navbar className="flex justify-center px-2 border-none">
@@ -34,14 +47,24 @@ const Nav = () => {
             </div>
           </NavbarBrand>
           <NavbarList>
-            <NavbarItem>Figma</NavbarItem>
-            <NavbarItem>Documentation</NavbarItem>
-            <NavbarItem>Blog</NavbarItem>
-            <NavbarItem active>Get Started</NavbarItem>
+            <NavbarItem className="rounded-full w-12 h-12 flex p-1 justify-center items-center border border-gray-300">
+              <Bell size={32} />
+            </NavbarItem>
+            <Button
+              onClick={handleLogOut}
+              size="md"
+              variant="outline"
+              className="text-lg text-red-500 bg-none outline-none border-none  hover:bg-red-200"
+            >
+              Log Out
+              <SignOut
+                size={20}
+                className="ml-3 text-red-500 bg-red-300 rounded-full w-8 h-8 p-1"
+              />
+            </Button>
           </NavbarList>
           <NavbarCollapseBtn />
           <NavbarCollapse>
-            <NavbarItem>Figma</NavbarItem>
             <NavbarItem>Documentation</NavbarItem>
             <NavbarItem>Blog</NavbarItem>
             <NavbarItem active>Get Started</NavbarItem>
