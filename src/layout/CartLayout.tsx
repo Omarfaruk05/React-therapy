@@ -1,6 +1,6 @@
 const CartLayout = ({ children }: any) => {
   return (
-    <div className=" w-fit p-6 md:my-2 bg-white rounded-xl">{children}</div>
+    <div className="w-full p-6 md:my-2 bg-white rounded-xl">{children}</div>
   );
 };
 

@@ -69,16 +69,16 @@ export const SidebarComponent = () => {
           </SidebarItem>
         </SidebarList>
       </SidebarBody>
-      <SidebarFooter className="block">
-        {/* <SidebarItem className="hover:bg-[#D4E9FF]">
+      {/* <SidebarFooter className="block">
+        <SidebarItem className="hover:bg-[#D4E9FF]">
           <Lifebuoy size={20} />
           Support
         </SidebarItem>
         <SidebarItem>
           <Gear size={20} />
           Settings
-        </SidebarItem> */}
-      </SidebarFooter>
+        </SidebarItem>
+      </SidebarFooter> */}
     </Sidebar>
   );
 };

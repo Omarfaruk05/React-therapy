@@ -3,7 +3,7 @@ import Hader from "../components/UI/Hader";
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="w-full">
       <div>
         <Hader />
       </div>

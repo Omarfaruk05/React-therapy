@@ -8,18 +8,18 @@ const Main = () => {
   return (
     <div>
       <div className="flex">
-        <aside className="hidden lg:block">
+        <div className="hidden lg:block w-[280px]">
           <SidebarComponent />
-        </aside>
+        </div>
         <div className="w-full">
           <Nav />
-          <main className="bg-[#D4E9FF]/30 h-full w-full py-4 md:p-8">
+          <main className="grid grid-cols-1 bg-[#D4E9FF]/30 py-4 md:p-8">
             {" "}
             <Outlet />
           </main>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
