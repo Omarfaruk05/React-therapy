@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import Nav from "./Nav";
 import { SidebarComponent } from "../components/UI/SidebarComponent";
 
@@ -7,7 +7,12 @@ const Main = () => {
   return (
     <div>
       <div className="flex">
-        <div className="hidden lg:block w-[280px]">
+        <div className="hidden lg:block w-[280px] border sticky top-10">
+          <Link to="" className="flex justify-center items-center my-12">
+            <span className="text-4xl text-blue-400 font-semibold uppercase">
+              Logo
+            </span>
+          </Link>
           <SidebarComponent />
         </div>
         <div className="w-full">

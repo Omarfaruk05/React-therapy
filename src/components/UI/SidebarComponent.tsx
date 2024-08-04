@@ -12,13 +12,8 @@ import { Link } from "react-router-dom";
 
 export const SidebarComponent = () => {
   return (
-    <Sidebar className="sticky top-0 shadow-none rounded-none h-screen">
-      <SidebarBody className="h-fit">
-        <Link to="" className="flex justify-center items-center my-12">
-          <span className="text-4xl text-blue-400 font-semibold uppercase">
-            Logo
-          </span>
-        </Link>
+    <Sidebar className="sticky top-0 shadow-none rounded-none border-none h-fit">
+      <SidebarBody>
         <SidebarList>
           <SidebarItem className="hover:bg-[#D4E9FF]">
             <HouseLine size={20} />

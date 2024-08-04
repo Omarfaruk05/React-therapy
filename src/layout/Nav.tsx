@@ -13,10 +13,10 @@ import { Bell, CaretDown, SignOut } from "phosphor-react";
 import { signOut } from "firebase/auth";
 import { auth } from "../lib/firebase.init";
 import { useNavigate } from "react-router-dom";
+import photo from "../assets/image 116.png";
+import { SidebarComponent } from "../components/UI/SidebarComponent";
 
 const Nav = () => {
-  // const [name, setName] = useState<string | null | undefined>();
-  // const [email, setEmail] = useState<string | null | undefined>();
   const navigate = useNavigate();
 
   const handleLogOut = async () => {
@@ -32,17 +32,10 @@ const Nav = () => {
   const email = localStorage.getItem("email");
   const name = localStorage.getItem("name");
 
-  // useEffect(() => {
-  //   const user = auth.currentUser;
-
-  //   setName(user?.displayName);
-  //   setEmail(user?.email);
-  // }, [name, email]);
-
   return (
     <div className="">
       <Navbar className="flex justify-center px-2 border-none">
-        <NavbarContainer>
+        <NavbarContainer className="relative">
           <NavbarBrand className="flex gap-2 cursor-pointer">
             <div>
               <img
@@ -78,11 +71,37 @@ const Nav = () => {
               />
             </Button>
           </NavbarList>
-          <NavbarCollapseBtn />
-          <NavbarCollapse>
-            <NavbarItem>Documentation</NavbarItem>
-            <NavbarItem>Blog</NavbarItem>
-            <NavbarItem active>Get Started</NavbarItem>
+
+          <div className="lg:hidden flex gap-5">
+            <Bell className=" w-6 h-6 text-gray-500" />
+            <NavbarCollapseBtn />
+          </div>
+          <NavbarCollapse className="absolute -top-6 -right-[10px] rounded-none  w-fit p-0 m-0 ">
+            <NavbarCollapseBtn className="absolute p-2" />
+            <div className="space-y-1 text-white bg-[#156BCA] m-0 pt-7 pr-7 pb-10 pl-24 grid grid-cols-1 justify-items-end">
+              <div className=" text-right mt-28">
+                <img
+                  className="rounded-full h-16 w-16 text-right"
+                  src={photo}
+                  alt=""
+                />
+              </div>
+              <h4 className="text-2xl font-semibold">{name}</h4>
+              <p className="text-black">{email}</p>
+            </div>
+            <div>
+              <SidebarComponent />
+            </div>
+            <NavbarItem
+              onClick={handleLogOut}
+              className="flex mx-auto bg-red-200  w-full justify-center rounded-none text-lg text-red-500 bg-none outline-none border-none  hover:bg-red-200"
+            >
+              Log Out
+              <SignOut
+                size={20}
+                className="ml-3 text-red-500 bg-red-300 rounded-full w-8 h-8 p-1"
+              />
+            </NavbarItem>
           </NavbarCollapse>
         </NavbarContainer>
       </Navbar>
