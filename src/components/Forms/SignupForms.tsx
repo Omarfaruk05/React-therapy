@@ -2,12 +2,7 @@ import { Envelope, Lock, User } from "phosphor-react";
 import { Button, Checkbox, Input, InputIcon, Label } from "keep-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import {
-  createUserWithEmailAndPassword,
-  updateProfile,
-  UserCredential,
-} from "firebase/auth";
-import { auth } from "../../lib/firebase.init";
+import { FirebaseAuthEmailPasswordCreateUser } from "../../lib/authentication";
 
 const SignupForms = ({ handleDrawer }: any) => {
   const navigate = useNavigate();
@@ -26,37 +21,26 @@ const SignupForms = ({ handleDrawer }: any) => {
       [name]: type === "checkbox" ? checked : value,
     });
   };
+  const isPasswordMatched =
+    (formValues.password || formValues.confirmPassword) &&
+    formValues.password !== formValues.confirmPassword;
+  console.log(isPasswordMatched);
+  const disabled = !formValues?.acceptTerms || isPasswordMatched;
 
   const handleSignup = async (event: any) => {
     event.preventDefault();
     const { name, email, password, acceptTerms } = formValues;
 
-    if (acceptTerms) {
-      try {
-        const data: UserCredential = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
+    const data = await FirebaseAuthEmailPasswordCreateUser(
+      name,
+      email,
+      password,
+      acceptTerms
+    );
 
-        if (data?.user?.email) {
-          await updateProfile(data.user, {
-            displayName: name,
-          });
-
-          const token = await data.user.getIdToken();
-
-          console.log(data.user);
-          localStorage.setItem("accessToken", token);
-          localStorage.setItem("email", data.user.email);
-          localStorage.setItem("name", data.user.displayName as string);
-          navigate("/");
-          window.location.reload();
-        }
-      } catch (error: any) {
-        console.log(error);
-        console.error(error.message);
-      }
+    if (data?.user?.email) {
+      navigate("/");
+      window.location.reload();
     }
   };
 
@@ -67,6 +51,7 @@ const SignupForms = ({ handleDrawer }: any) => {
           <Label htmlFor="name">Name</Label>
           <div className="relative">
             <Input
+              required
               placeholder="@username"
               className="ps-11 bg-white outline-none focus:border-none"
               name="name"
@@ -82,6 +67,7 @@ const SignupForms = ({ handleDrawer }: any) => {
           <Label htmlFor="email">Email</Label>
           <div className="relative">
             <Input
+              required
               placeholder="Enter your email"
               className="ps-11 bg-white outline-none focus:border-none"
               name="email"
@@ -97,6 +83,7 @@ const SignupForms = ({ handleDrawer }: any) => {
           <Label htmlFor="password">Password</Label>
           <div className="relative">
             <Input
+              required
               id="password"
               placeholder="Enter password"
               type="password"
@@ -114,6 +101,7 @@ const SignupForms = ({ handleDrawer }: any) => {
           <Label htmlFor="confirm-password">Confirm Password</Label>
           <div className="relative">
             <Input
+              required
               id="confirmPassword"
               placeholder="Re-type password"
               type="password"
@@ -125,6 +113,11 @@ const SignupForms = ({ handleDrawer }: any) => {
             <InputIcon>
               <Lock size={19} color="#AFBACA" />
             </InputIcon>
+            {isPasswordMatched && (
+              <small className="text-red-500 mx-2">
+                Password and confirm password is not matched.
+              </small>
+            )}
           </div>
         </fieldset>
         <fieldset className="flex items-center gap-2">
@@ -139,6 +132,7 @@ const SignupForms = ({ handleDrawer }: any) => {
           </Label>
         </fieldset>
         <Button
+          {...{ disabled }}
           onClick={handleDrawer}
           className="mx-auto text-center bg-blue-500 w-[271px]"
           size="sm"

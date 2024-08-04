@@ -4,30 +4,29 @@ import mobileBg from "../assets/mobileBg.png";
 import LoginForms from "../components/Forms/LoginForms";
 import { GoogleLogo, FacebookLogo } from "phosphor-react";
 import { Drawer, DrawerBody, DrawerContent } from "keep-react";
-import { useState } from "react";
-import {
-  FacebookAuthProvider,
-  GoogleAuthProvider,
-  signInWithPopup,
-  UserCredential,
-} from "firebase/auth";
-import { auth } from "../lib/firebase.init";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  firebaseAuthFacebookSignIn,
+  firebaseAuthGoogleSignIn,
+} from "../lib/authentication";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  const token = localStorage.getItem("accessToken");
+
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [token]);
+
   const googleSignIn = async () => {
     try {
-      const provider = new GoogleAuthProvider();
-      const data: UserCredential = await signInWithPopup(auth, provider);
-
+      const data = await firebaseAuthGoogleSignIn();
       if (data?.user?.email) {
-        const token = await data.user.getIdToken();
-        localStorage.setItem("accessToken", token);
-        localStorage.setItem("email", data.user.email);
-        localStorage.setItem("name", data.user.displayName as string);
         navigate("/");
         window.location.reload();
       }
@@ -38,14 +37,8 @@ const LoginPage = () => {
   };
   const facebookSignIn = async () => {
     try {
-      const provider = new FacebookAuthProvider();
-      const data = await signInWithPopup(auth, provider);
-
+      const data = await firebaseAuthFacebookSignIn();
       if (data?.user?.email) {
-        const token = await data.user.getIdToken();
-        localStorage.setItem("accessToken", token);
-        localStorage.setItem("email", data.user.email);
-        localStorage.setItem("name", data.user.displayName as string);
         navigate("/");
         window.location.reload();
       }
@@ -106,8 +99,9 @@ const LoginPage = () => {
           </div>
         </div>
       </div>
+      {/* for mobile  */}
       <div
-        className="block md:hidden h-screen w-screen px-7 pt-16"
+        className="block md:hidden h-screen w-full px-7 pt-16"
         style={{ backgroundImage: `url(${mobileBg})` }}
       >
         <div className=" space-y-3">
@@ -131,7 +125,7 @@ const LoginPage = () => {
         <Drawer isOpen={isOpen} onOpenChange={setIsOpen}>
           <DrawerBody>
             <DrawerContent>
-              <div className="h-[70vh] w-full mx-auto font-semibold space-y-3 px-4 pt-12">
+              <div className="h-[75vh] w-full mx-auto font-semibold space-y-3 px-4 pt-12">
                 <div className=" space-y-3">
                   <h2 className="uppercase text-[40px] font-semibold text-[#4285F3]">
                     Logo
@@ -139,14 +133,20 @@ const LoginPage = () => {
                   <h3 className="font-semibold text-3xl">
                     Log In To Your Account
                   </h3>
-                  <p>Welcome Back! Select a method to log in </p>
+                  <p>Welcome Back! Select a method to log in</p>
                 </div>
                 <div className="my-7 flex justify-between">
-                  <Button className="px-7 text-black shadow-md bg-gradient-to-r from-[#E4E4E4] to-[#FFFFFF]">
+                  <Button
+                    onClick={googleSignIn}
+                    className="px-7 text-black shadow-md bg-gradient-to-r from-[#E4E4E4] to-[#FFFFFF]"
+                  >
                     <GoogleLogo size={20} className="mr-3" />
                     Google
                   </Button>
-                  <Button className="shadow-md px-7 bg-gradient-to-r from-[#298FFF] to-[#0778F5]">
+                  <Button
+                    onClick={facebookSignIn}
+                    className="shadow-md px-7 bg-gradient-to-r from-[#298FFF] to-[#0778F5]"
+                  >
                     <FacebookLogo size={20} className="mr-5 " />
                     Facebook
                   </Button>

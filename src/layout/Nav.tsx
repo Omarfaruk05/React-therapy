@@ -55,12 +55,12 @@ const Nav = () => {
             </div>
           </NavbarBrand>
           <NavbarList>
-            <NavbarItem className="rounded-full w-12 h-12 flex p-1 justify-center items-center border border-gray-300">
+            <NavbarItem className="rounded-full w-8 h-8 flex p-1 justify-center items-center border border-gray-300">
               <Bell size={32} />
             </NavbarItem>
             <Button
               onClick={handleLogOut}
-              size="md"
+              size="xs"
               variant="outline"
               className="text-lg text-red-500 bg-none outline-none border-none  hover:bg-red-200"
             >

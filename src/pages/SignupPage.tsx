@@ -2,14 +2,24 @@ import destopBg from "../assets/singup.png";
 import mobileBg from "../assets/mobileBg.png";
 import SignupForms from "../components/Forms/SignupForms";
 import { Drawer, DrawerBody, DrawerContent } from "keep-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const handleDrawer = () => {
     setIsOpen(!isOpen);
   };
+
+  const token = localStorage.getItem("accessToken");
+
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [token]);
   return (
     <div>
       {/* for web  */}
@@ -50,7 +60,7 @@ const SignupPage = () => {
       </div>
       {/* for mobile  */}
       <div
-        className="block md:hidden h-screen w-screen px-7 pt-16"
+        className="block md:hidden h-screen w-dvw px-7 pt-16"
         style={{ backgroundImage: `url(${mobileBg})` }}
       >
         <div className=" space-y-3">
@@ -81,7 +91,7 @@ const SignupPage = () => {
         <Drawer isOpen={isOpen} onOpenChange={setIsOpen}>
           <DrawerBody>
             <DrawerContent>
-              <div className="h-[70vh] w-full mx-auto font-semibold space-y-3 px-4 pt-12">
+              <div className="h-[75vh] w-full mx-auto font-semibold space-y-3 px-4 pt-12">
                 <h2 className="text-center font-semibold text-3xl">Sing Up</h2>
                 <SignupForms handleDrawer={handleDrawer} />
               </div>
