@@ -15,15 +15,30 @@ import { auth } from "../lib/firebase.init";
 import { useNavigate } from "react-router-dom";
 
 const Nav = () => {
+  // const [name, setName] = useState<string | null | undefined>();
+  // const [email, setEmail] = useState<string | null | undefined>();
   const navigate = useNavigate();
+
   const handleLogOut = async () => {
     await signOut(auth);
 
     localStorage.removeItem("accessToken");
     localStorage.removeItem("email");
+    localStorage.removeItem("name");
 
     navigate("/login");
   };
+
+  const email = localStorage.getItem("email");
+  const name = localStorage.getItem("name");
+
+  // useEffect(() => {
+  //   const user = auth.currentUser;
+
+  //   setName(user?.displayName);
+  //   setEmail(user?.email);
+  // }, [name, email]);
+
   return (
     <div className="">
       <Navbar className="flex justify-center px-2 border-none">
@@ -38,12 +53,12 @@ const Nav = () => {
             </div>
             <div>
               <h6 className="font-semibold flex justify-between items-center">
-                <span>sagar soni</span>
+                <span>{name}</span>
                 <span>
                   <CaretDown />
                 </span>
               </h6>
-              <p className="text-gray-500">sagar@gmail.com</p>
+              <p className="text-gray-500">{email}</p>
             </div>
           </NavbarBrand>
           <NavbarList>

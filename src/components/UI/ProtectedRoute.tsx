@@ -1,9 +1,15 @@
+import { useEffect, useState } from "react";
 import LoginPage from "../../pages/LoginPage";
 
 const ProtectedRoute = ({ children }: any) => {
-  const email = localStorage.getItem("email");
+  const [token, setToken] = useState<string | null>("");
 
-  return email ? children : <LoginPage />;
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    setToken(token);
+  }, [token, setToken]);
+
+  return token ? children : <LoginPage />;
 };
 
 export default ProtectedRoute;

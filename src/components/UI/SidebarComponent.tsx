@@ -1,34 +1,18 @@
 import {
-  ChartPie,
-  CheckSquare,
-  FileSearch,
   FileText,
   Gear,
   Heart,
   HouseLine,
   Info,
-  Lifebuoy,
   MagnifyingGlass,
-  PersonSimple,
-  PresentationChart,
-  Stack,
   Users,
 } from "phosphor-react";
-import {
-  Avatar,
-  Input,
-  InputIcon,
-  Sidebar,
-  SidebarBody,
-  SidebarFooter,
-  SidebarItem,
-  SidebarList,
-} from "keep-react";
+import { Sidebar, SidebarBody, SidebarItem, SidebarList } from "keep-react";
 import { Link } from "react-router-dom";
 
 export const SidebarComponent = () => {
   return (
-    <Sidebar className="shadow-none rounded-none h-screen">
+    <Sidebar className="sticky top-0 shadow-none rounded-none h-screen">
       <SidebarBody className="h-fit">
         <Link to="" className="flex justify-center items-center my-12">
           <span className="text-4xl text-blue-400 font-semibold uppercase">

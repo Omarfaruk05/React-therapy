@@ -2,7 +2,11 @@ import { Envelope, Lock, User } from "phosphor-react";
 import { Button, Checkbox, Input, InputIcon, Label } from "keep-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  UserCredential,
+} from "firebase/auth";
 import { auth } from "../../lib/firebase.init";
 
 const SignupForms = ({ handleDrawer }: any) => {
@@ -25,20 +29,29 @@ const SignupForms = ({ handleDrawer }: any) => {
 
   const handleSignup = async (event: any) => {
     event.preventDefault();
-    const { email, password, acceptTerms } = formValues;
+    const { name, email, password, acceptTerms } = formValues;
 
     if (acceptTerms) {
       try {
-        const data = await createUserWithEmailAndPassword(
+        const data: UserCredential = await createUserWithEmailAndPassword(
           auth,
           email,
           password
         );
 
-        if (data?.user?.accessToken && data?.user?.email) {
-          localStorage.setItem("accessToken", data.user.accessToken);
+        if (data?.user?.email) {
+          await updateProfile(data.user, {
+            displayName: name,
+          });
+
+          const token = await data.user.getIdToken();
+
+          console.log(data.user);
+          localStorage.setItem("accessToken", token);
           localStorage.setItem("email", data.user.email);
+          localStorage.setItem("name", data.user.displayName as string);
           navigate("/");
+          window.location.reload();
         }
       } catch (error: any) {
         console.log(error);

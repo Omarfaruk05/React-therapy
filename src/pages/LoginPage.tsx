@@ -5,9 +5,55 @@ import LoginForms from "../components/Forms/LoginForms";
 import { GoogleLogo, FacebookLogo } from "phosphor-react";
 import { Drawer, DrawerBody, DrawerContent } from "keep-react";
 import { useState } from "react";
+import {
+  FacebookAuthProvider,
+  GoogleAuthProvider,
+  signInWithPopup,
+  UserCredential,
+} from "firebase/auth";
+import { auth } from "../lib/firebase.init";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const googleSignIn = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const data: UserCredential = await signInWithPopup(auth, provider);
+
+      if (data?.user?.email) {
+        const token = await data.user.getIdToken();
+        localStorage.setItem("accessToken", token);
+        localStorage.setItem("email", data.user.email);
+        localStorage.setItem("name", data.user.displayName as string);
+        navigate("/");
+        window.location.reload();
+      }
+    } catch (error: any) {
+      console.log(error);
+      console.error(error.message);
+    }
+  };
+  const facebookSignIn = async () => {
+    try {
+      const provider = new FacebookAuthProvider();
+      const data = await signInWithPopup(auth, provider);
+
+      if (data?.user?.email) {
+        const token = await data.user.getIdToken();
+        localStorage.setItem("accessToken", token);
+        localStorage.setItem("email", data.user.email);
+        localStorage.setItem("name", data.user.displayName as string);
+        navigate("/");
+        window.location.reload();
+      }
+    } catch (error: any) {
+      console.log(error);
+      console.error(error.message);
+    }
+  };
 
   const handleDrawer = () => {
     setIsOpen(!isOpen);
@@ -25,11 +71,17 @@ const LoginPage = () => {
               <p>Welcome Back! Select a method to log in </p>
             </div>
             <div className="my-7 flex justify-between">
-              <Button className="px-7 text-black shadow-md bg-gradient-to-r from-[#E4E4E4] to-[#FFFFFF]">
+              <Button
+                onClick={googleSignIn}
+                className="px-7 text-black shadow-md bg-gradient-to-r from-[#E4E4E4] to-[#FFFFFF]"
+              >
                 <GoogleLogo size={20} className="mr-3" />
                 Google
               </Button>
-              <Button className="shadow-md px-7 bg-gradient-to-r from-[#298FFF] to-[#0778F5]">
+              <Button
+                onClick={facebookSignIn}
+                className="shadow-md px-7 bg-gradient-to-r from-[#298FFF] to-[#0778F5]"
+              >
                 <FacebookLogo size={20} className="mr-5 " />
                 Facebook
               </Button>

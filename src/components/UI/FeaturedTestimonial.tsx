@@ -1,4 +1,3 @@
-import React from "react";
 import CartLayout from "../../layout/CartLayout";
 import photo from "../../assets/image 116.png";
 import { MapPin } from "phosphor-react";

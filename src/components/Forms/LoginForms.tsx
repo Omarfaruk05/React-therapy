@@ -2,7 +2,7 @@ import { Envelope, Lock } from "phosphor-react";
 import { Button, Checkbox, Input, InputIcon, Label } from "keep-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, UserCredential } from "firebase/auth";
 import { auth } from "../../lib/firebase.init";
 
 const LoginForms = ({ handleDrawer }: any) => {
@@ -29,12 +29,19 @@ const LoginForms = ({ handleDrawer }: any) => {
     console.log("Remember Me:", rememberMe);
 
     try {
-      const data = await signInWithEmailAndPassword(auth, email, password);
+      const data: UserCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
 
-      if (data?.user?.accessToken && data?.user?.email) {
-        localStorage.setItem("accessToken", data.user.accessToken);
+      if (data?.user?.email) {
+        const token = await data.user.getIdToken();
+        localStorage.setItem("accessToken", token);
         localStorage.setItem("email", data.user.email);
+        localStorage.setItem("name", data.user.displayName as string);
         navigate("/");
+        window.location.reload();
       }
     } catch (error: any) {
       console.log(error);
