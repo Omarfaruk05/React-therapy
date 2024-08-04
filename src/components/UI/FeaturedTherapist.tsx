@@ -2,7 +2,7 @@ import CartLayout from "../../layout/CartLayout";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 import { Navigation } from "swiper/modules";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Car, CaretLeft, CaretRight, MapPin } from "phosphor-react";
@@ -15,10 +15,17 @@ import {
   CardTitle,
 } from "keep-react";
 import photo from "../../assets/image 118.png";
+import { ITherapist } from "../../interfaces/mocData.interface";
+import mockTherapist from "../../../public/data/mocktherapist.json";
 
 const FeaturedTherapist = () => {
+  const [therapist, setTherapist] = useState<ITherapist[] | null>([]);
   const num = [1, 2, 3, 4, 5, 6, 7, 8];
   const swiperRef = useRef<SwiperType | null>(null);
+
+  useEffect(() => {
+    setTherapist(mockTherapist as ITherapist[]);
+  });
   return (
     <CartLayout>
       <div className="flex items-center gap-2">
@@ -58,34 +65,34 @@ const FeaturedTherapist = () => {
         >
           {num.map((slide) => (
             <div key={slide} className="flex-[0_0_80%]">
-              {num.map((slide) => (
-                <SwiperSlide>
+              {therapist?.map((data: ITherapist, index) => (
+                <SwiperSlide key={index}>
                   <Card>
                     <CardHeader className="p-[5px]">
                       <img
                         className="w-[194px] h-[146px]"
-                        src={photo}
+                        src={data?.image}
                         alt="image"
                         width={600}
                         height={400}
                       />
                     </CardHeader>
-                    <CardContent className="space-y-3 text-start p-0">
+                    <CardContent className="space-y-2 text-start p-0">
                       <CardTitle className="text-md px-3">
-                        Alexander Cort
+                        {data?.name}
                       </CardTitle>
-                      <CardDescription className="text-gray-400 px-2">
+                      <CardDescription className="space-y-1 text-gray-400 px-2">
                         <div className="flex items-center gap-1">
                           <MapPin
                             className="text-gray-600"
                             size={12}
                             weight="fill"
                           />
-                          <p>123 Elm Street, New York</p>
+                          <p>{data?.address}</p>
                         </div>
                         <div className="flex items-center gap-1">
                           <Car className="text-gray-600" size={12} />
-                          <p>Mobile & In-Studio</p>
+                          <p>{data?.workType}</p>
                         </div>
                       </CardDescription>
                       <Button
