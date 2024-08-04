@@ -7,19 +7,21 @@
 email: omarfaruk@gmail.com
 password: 123456
 
-### step-1
+## Follow this steps to install the project in your local computer.
+
+#### step-1
 
 ```
 git clone https://github.com/Omarfaruk05/React-therapy
 ```
 
-### step-2
+#### step-2
 
 ```
 yarn
 ```
 
-### step-3
+#### step-3
 
 ```
 yarn dev
