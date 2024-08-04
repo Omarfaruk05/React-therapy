@@ -8,7 +8,6 @@ import {
   Users,
 } from "phosphor-react";
 import { Sidebar, SidebarBody, SidebarItem, SidebarList } from "keep-react";
-import { Link } from "react-router-dom";
 
 export const SidebarComponent = () => {
   return (

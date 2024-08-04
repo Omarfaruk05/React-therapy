@@ -14,7 +14,6 @@ import {
   CardHeader,
   CardTitle,
 } from "keep-react";
-import photo from "../../assets/image 118.png";
 import { ITherapist } from "../../interfaces/mocData.interface";
 import mockTherapist from "../../../public/data/mocktherapist.json";
 
