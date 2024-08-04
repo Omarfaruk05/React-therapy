@@ -132,7 +132,7 @@ const SignupForms = ({ handleDrawer }: any) => {
           </Label>
         </fieldset>
         <Button
-          {...{ disabled }}
+          {...({ disabled } as any)}
           onClick={handleDrawer}
           className="mx-auto text-center bg-blue-500 w-[271px]"
           size="sm"

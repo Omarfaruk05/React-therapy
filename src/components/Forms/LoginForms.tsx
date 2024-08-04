@@ -43,6 +43,7 @@ const LoginForms = ({ handleDrawer }: any) => {
           <Label htmlFor="email">Email</Label>
           <div className="relative">
             <Input
+              required
               placeholder="Enter your email"
               className="ps-11 bg-white outline-none focus:border-none"
               name="email"
@@ -58,6 +59,7 @@ const LoginForms = ({ handleDrawer }: any) => {
           <Label htmlFor="password">Password</Label>
           <div className="relative">
             <Input
+              required
               id="password"
               placeholder="Enter password"
               type="password"
