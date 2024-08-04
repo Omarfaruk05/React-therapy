@@ -48,6 +48,7 @@ export const firebaseAuthEmailPasswordSignIn = async (
   password: string,
   rememberMe: boolean
 ) => {
+  console.log(rememberMe);
   try {
     const data: UserCredential = await signInWithEmailAndPassword(
       auth,
