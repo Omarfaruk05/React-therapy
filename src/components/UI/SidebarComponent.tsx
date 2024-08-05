@@ -11,7 +11,7 @@ import { Sidebar, SidebarBody, SidebarItem, SidebarList } from "keep-react";
 
 export const SidebarComponent = () => {
   return (
-    <Sidebar className="sticky top-0 shadow-none rounded-none border-none h-fit">
+    <Sidebar className="sticky top-0 shadow-none rounded-none border-none w-fit h-fit">
       <SidebarBody>
         <SidebarList className="overscroll-contain">
           <SidebarItem className="hover:bg-[#D4E9FF]">
