@@ -2,7 +2,7 @@ import CartLayout from "../../layout/CartLayout";
 import { MapPin } from "phosphor-react";
 import { useEffect, useState } from "react";
 import { ITestimonial } from "../../interfaces/mocData.interface";
-import mocTestimonial from "../../../public/data/mockTestimonial.json";
+import mocTestimonial from "../../data/mockTestimonial.json";
 
 const FeaturedTestimonial = () => {
   const [testimonial, setTestimonial] = useState<ITestimonial[]>([]);

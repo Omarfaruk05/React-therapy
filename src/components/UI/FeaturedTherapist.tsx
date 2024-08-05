@@ -15,7 +15,7 @@ import {
   CardTitle,
 } from "keep-react";
 import { ITherapist } from "../../interfaces/mocData.interface";
-import mockTherapist from "../../../public/data/mocktherapist.json";
+import mockTherapist from "../../data/mockTherapist.json";
 
 const FeaturedTherapist = () => {
   const [therapist, setTherapist] = useState<ITherapist[] | null>([]);

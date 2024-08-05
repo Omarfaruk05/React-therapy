@@ -1,6 +1,6 @@
 import CartLayout from "../../layout/CartLayout";
 import { Table, TableBody, TableCell, TableRow } from "keep-react";
-import mockCities from "../../../public/data/mocCities.json";
+import mockCities from "../../data/mocCities.json";
 import { useEffect, useState } from "react";
 import { ICities } from "../../interfaces/mocData.interface";
 

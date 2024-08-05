@@ -17,12 +17,6 @@ const LoginPage = () => {
 
   const token = localStorage.getItem("accessToken");
 
-  useEffect(() => {
-    if (token) {
-      navigate("/");
-    }
-  }, [token]);
-
   const googleSignIn = async () => {
     try {
       const data = await firebaseAuthGoogleSignIn();
@@ -51,6 +45,13 @@ const LoginPage = () => {
   const handleDrawer = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [token]);
+
   return (
     <div>
       <div className="hidden max-w-5xl h-screen mx-auto md:flex justify-center items-center">
