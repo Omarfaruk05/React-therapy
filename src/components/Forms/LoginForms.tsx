@@ -31,11 +31,10 @@ const LoginForms = ({ handleDrawer }: any) => {
 
     if (data?.user?.email) {
       navigate("/");
+      handleDrawer;
+      window.location.reload();
     }
-
-    handleDrawer;
   };
-
   return (
     <div className="my-5">
       <form onSubmit={handleSignin} className="space-y-5">

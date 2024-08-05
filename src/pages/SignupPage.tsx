@@ -51,7 +51,7 @@ const SignupPage = () => {
             className=" h-[720px] xl:w-[648px] rounded-2xl grid place-items-center"
             style={{ backgroundImage: `url(${destopBg})` }}
           >
-            <div className="text-center p-8 bg-[#152A16]/65 backdrop-blur-lg w-[341px] rounded-xl h-[143px]">
+            <div className="text-center p-8 bg-[#152A16]/65 backdrop-blur-lg max-w-[341px] rounded-xl max-h-[143px]">
               <h5 className="text-blue-400 text-2xl">Create Account</h5>
               <h5 className="text-2xl text-white">Fill in Your Information</h5>
             </div>
@@ -82,7 +82,7 @@ const SignupPage = () => {
         </div>
         <div
           onClick={handleDrawer}
-          className="text-center p-8 my-20 mx-auto bg-[#152A16]/65 backdrop-blur-lg w-[341px] rounded-xl h-[143px]"
+          className="text-center p-8 my-20 mx-auto bg-[#152A16]/65 backdrop-blur-lg max-w-[341px] rounded-xl max-h-[143px]"
         >
           <h5 className="text-blue-400 text-2xl underline">Create Account</h5>
           <h5 className="text-2xl text-white">Fill in Your Information</h5>

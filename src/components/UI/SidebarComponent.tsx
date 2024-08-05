@@ -13,7 +13,7 @@ export const SidebarComponent = () => {
   return (
     <Sidebar className="sticky top-0 shadow-none rounded-none border-none h-fit">
       <SidebarBody>
-        <SidebarList>
+        <SidebarList className="overscroll-contain">
           <SidebarItem className="hover:bg-[#D4E9FF]">
             <HouseLine size={20} />
             Home

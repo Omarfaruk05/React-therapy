@@ -39,6 +39,7 @@ const SignupForms = ({ handleDrawer }: any) => {
     );
 
     if (data?.user?.email) {
+      handleDrawer;
       navigate("/");
       window.location.reload();
     }
@@ -133,7 +134,6 @@ const SignupForms = ({ handleDrawer }: any) => {
         </fieldset>
         <Button
           {...({ disabled } as any)}
-          onClick={handleDrawer}
           className="mx-auto text-center bg-blue-500 w-[271px]"
           size="sm"
           type="submit"

@@ -91,7 +91,7 @@ const LoginPage = () => {
             className=" h-[720px] xl:w-[648px] rounded-2xl grid place-items-center"
             style={{ backgroundImage: `url(${destopBg})` }}
           >
-            <div className="text-center p-8 bg-[#152A16]/65 backdrop-blur-lg w-[341px] rounded-xl h-[143px]">
+            <div className="text-center p-8 bg-[#152A16]/65 backdrop-blur-lg max-w-[341px] rounded-xl max-h-[143px]">
               <h5 className="text-2xl text-white">
                 <span className="text-blue-400">Sign In</span>{" "}
                 <span> to view all the massage therapists</span>
@@ -116,7 +116,7 @@ const LoginPage = () => {
             Welcome Back! Select a method to log in{" "}
           </p>
         </div>
-        <div className="mx-auto text-center mt-20 p-8 bg-[#152A16]/65 backdrop-blur-lg w-[341px] rounded-xl h-[143px]">
+        <div className="mx-auto text-center mt-20 p-8 bg-[#152A16]/65 backdrop-blur-lg max-w-[341px] rounded-xl max-h-[143px]">
           <h5 onClick={handleDrawer} className="text-2xl text-white">
             <span className="text-blue-400 underline">Sign In</span>{" "}
             <span> to view all the massage therapists</span>

@@ -76,9 +76,9 @@ const Nav = () => {
             <Bell className=" w-6 h-6 text-gray-500" />
             <NavbarCollapseBtn />
           </div>
-          <NavbarCollapse className="absolute -top-6 -right-[10px] rounded-none  w-fit p-0 m-0 ">
+          <NavbarCollapse className="fixed -top-[1px] -right-8  rounded-none  w-fit p-0 m-0 ">
             <NavbarCollapseBtn className="absolute p-2" />
-            <div className="space-y-1 text-white bg-[#156BCA] m-0 pt-7 pr-7 pb-10 pl-24 grid grid-cols-1 justify-items-end">
+            <div className="space-y-1 text-white bg-[#156BCA] m-0 pt-7 w-full pr-16 pb-10 pl-20 grid grid-cols-1 justify-items-end">
               <div className=" text-right mt-28">
                 <img
                   className="rounded-full h-16 w-16 text-right"
